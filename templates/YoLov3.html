@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css.css') }}">
+</head>
+<body>
+<div style="height: 800px; border:1px solid red">
+<div class="camera_wrapper">
+    <div class="camera" >
+        <h1 class="tieude">Phan Nam</h1>
+        <form action="http://127.0.0.1:5000/yolov3" method="post">
+
+            <input  type="submit" value="Bật" name="bat" />
+
+        </form>
+    </div>
+ {% if bat   %}
+    {% if bat% 2 == 1   %}
+
+        <img src=" {{ url_for('yolov3_camera')  }} " class="video">
+     {% endif %}
+
+    {% endif %}
+
+</div>
+<iframe src="http://127.0.0.1:5000/dulieu" frameborder="1" style="height:100%; width:100%;"></iframe>
+</div>
+</body>
+</html>

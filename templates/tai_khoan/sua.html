@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css.css') }}">
+</head>
+<body>
+<div>
+        <h1>Phan Nam</h1>
+
+
+
+    <div class="them">
+        <div>
+        <a href="/" >Danh sách</a>
+    </div>
+        <h3 style="text-align: center"> Sửa tài khoản</h3>
+        <form action="" method="post">
+
+            Tài khoản : <input type="text"  name="tk" placeholder="{{mang[0][1]}} " /> <br><br>
+            Mật khẩu : <input type="text"   name="mk" placeholder="{{mang[0][2]}} " /> <br><br>
+            Xác nhận MK : <input type="text"  name="xnmk" /> <br><br>
+            Trạng thái : <input type="text"  name="tt" placeholder="{{mang[0][3]}} " /> <br><br>
+
+            <input type="submit" value="Sửa"  name="sua" /> <br><br>
+
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

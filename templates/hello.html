@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css.css') }}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+        // zoom image
+        $(document).on("click",".table img",function() {
+				var img = $(this).attr( 'src');
+				var appear_image = "<div id='appear_image_div' > <div id='box_imgae_zoom'>";
+				appear_image  = appear_image.concat("<img src='"+img+"' alt='a' id='appear_image'> ");
+				appear_image  = appear_image.concat("<div id='close_image' ></div>  </div></div> ");
+				$('body').append(appear_image);
+
+
+				var positiom_scroll = $('html,body').scrollTop();
+				$('#appear_image_div').css('top',positiom_scroll+'px');
+
+			});
+
+
+			$(document).on("click","#close_image,#appear_image_div",function() {
+				$('#appear_image_div').remove();
+				$('#box_imgae_zoom').remove();
+
+			});
+
+
+			$(window).scroll(function(event) {
+			var pos_body = $('html,body').scrollTop();
+			var positiom_scroll = $('html,body').scrollTop();
+				$('#appear_image_div').css('top',positiom_scroll+'px');
+
+		    });
+
+		    setInterval(function(){
+			var url="dulieuthunghiem";
+			$('.farecognition_wrapper').load(url);
+		    },2000);
+
+                <!--		    Xoa toan bo-->
+            $(document).on("click","#xtb",function() {
+				$.ajax({
+					url: '/proccess',
+					type: 'GET',
+					data: {
+						xuly: 'xoatb',
+					},
+				})
+                .done(function(data) {
+					if (data.kq){
+						alert(data.kq);
+					}
+					else{
+						alert(data.kq);
+					}
+				})
+
+		    });
+
+            $('#formvideo').on("click",function(event) {
+				$.ajax({
+					url: '/',
+					type: 'POST',
+					data: {
+						bat: 'bat',
+					},
+				})
+                .done(function(data) {
+					/*if (data.kq){
+						alert(data.kq);
+					}
+					else{
+						alert(data.kq);
+					}*/
+					var a = data.bat;
+					alert(a);
+					if (a % 2 == 0){
+
+					  $('#videobat').html(" <img src=" +"{{ url_for('video') }} "+ "id="+"video"+">")
+
+					  $('#infor_box').html("Camera đang bật. Vui lòng chờ...")
+
+					}
+					else{
+
+					    $('#videobat').html("")
+					    $('#infor_box').html("Camera đang tắt")
+					}
+				});
+
+			});
+<!--			    phan keo len-->
+            $(window).scroll(function(event) {
+                var t = $('html,body').scrollTop();
+                if (t > 200){
+                 $('#back_to_top').addClass('back_to_top_show');
+                }else{
+                $('#back_to_top').removeClass('back_to_top_show');
+
+                }
+	        });
+	        $('#back_to_top').click(function(event) {
+                        $('html,body').animate({
+                        scrollTop: 0},
+                        1400);
+                    });
+	});
+<!--	ket thuc ready-->
+    </script>
+</head>
+<body>
+<div class="contrainer">
+<!--        phần header-->
+        <div class="header">
+            <div class="banner_header">
+            <img src="static\image\banner_header.jpg" alt="baner_header_DHHHVN">
+            </div>
+
+            <div class="topic_content">
+            <p>
+                Điểm danh sinh viên bằng nhận dạng khuôn mặt
+            </p>
+            </div>
+            <div class="ìnformation">
+
+
+            <div class="menber_list">
+                    Danh Sách Thành Viên: <br><br>
+
+                    Phan Văn Nam-69472 <br>
+                    Đỗ Đức Lượng-6730<br>
+                    Đỗ Hoàng Hiệp-6
+            </div>
+            <div class="instructor">
+                    Giáo viên hướng dẫn:<br><br>
+
+                    ts.Hồ Thị Hương Thơm
+            </div>
+                 <div class="clear"></div>
+            </div>
+        <div class="clear"></div>
+
+    </div>
+</div>
+<div class="mainbody contrainer">
+
+<!--    Camera part-->
+    <div class="camera_wrapper">
+        <div class="camera" >
+            <h1 class="tieude">CAMERA</h1>
+<!--            <form id="formvideo">-->
+
+<!--                <input  type="submit" value="Bật" name="bat" />-->
+
+                <button id="formvideo">Bật</button>
+                <span id="infor_box"> Camera đang tắt  </span>
+
+<!--            </form>-->
+        </div>
+        <div id="videobat">
+
+        </div>
+
+
+    </div>
+
+    <!--    Phan hien thi nhan dang sinh vien-->
+    <div class="farecognition_wrapper">
+
+    </div>
+<div class="clear"></div>
+</div>
+<!--end container-->
+<div id="back_to_top">
+    <img src="static/image/up.png" alt="">
+</div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function loadref(time)
+        {
+            setTimeout("location.reload(true);",time);
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css.css') }}">
+</head>
+<body onload="Javascript:loadref(1000000)">
+<div >
+     <h1>Phan Nam</h1>
+    <div class="camera" style="float: left">
+
+        <form action="http://127.0.0.1:5000/" method="post">
+
+            <input  type="submit" value="Bật" name="bat" />
+
+        </form>
+
+ {% if bat   %}
+    {% if bat% 2 == 1   %}
+
+        <img src=" {{ url_for('video')  }} " >
+     {% endif %}
+
+    {% endif %}
+</div>
+<!--   Danh Sach Diem Danh-->
+
+    <div class="dsdd">
+    <div>
+        <a href="diemdanh" >Xóa toàn bộ</a>
+    </div>
+        <div>
+        <a href="diemdanh/capnhat" >Cập nhật DS</a>
+    </div>
+    <table>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Tên
+            </th>
+            <th>
+                Ngày
+            </th>
+            <th>
+                Giờ Đến
+            </th>
+            <th>
+                Đến Muộn
+            </th>
+            <th>
+                Về Sớm
+            </th>
+            <th colspan="2">
+                Quản lý
+            </th>
+        </tr>
+        {% for i in dd %}
+        <tr>
+            <td>
+                   {% print( dd.index(i) + 1) %}
+            </td>
+            {% for j in range(5)%}
+                <td>
+                    {{  i[j+1]  }}
+                </td>
+            {% endfor %}
+             <td >
+                <a href="diemdanh/sua?id={{ i[0]}}" > Sửa  </a>
+             </td>
+            <td >
+                <a href="diemdanh/xoa?id={{ i[0]}}" > Xóa</a>
+
+             </td>
+        </tr>
+
+    {% endfor %}
+    </table>
+   </div>
+
+    <div class="clear"></div>
+    <br><br>
+<!--   Danh Sach Thu Nghiem-->
+    <div class="ds">
+    <div>
+        <a href="user/them" >Thêm</a>
+    </div>
+    <table>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Mật khẩu
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th colspan="2">
+                Quản lý
+            </th>
+        </tr>
+        {% for i in mang %}
+        <tr>
+                <td>
+                   {% print( mang.index(i) + 1) %}
+                </td>
+            {% for j in range(3) %}
+                <td>
+                    {{  i[j+1]  }}
+                </td>
+            {% endfor %}
+             <td >
+                <a href="user/sua?id={{ i[0]}}" > Sửa  </a>
+             </td>
+            <td >
+                <a href="user/xoa?id={{ i[0]}}" > Xóa</a>
+
+             </td>
+        </tr>
+
+    {% endfor %}
+    </table>
+   </div>
+</div>
+</body>
+</html>

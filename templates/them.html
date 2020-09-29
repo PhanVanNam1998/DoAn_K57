@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css.css') }}">
+</head>
+<body>
+<div>
+        <h1>Phan Nam</h1>
+<!--        <form action="" method="post">-->
+
+<!--    <input  type="submit" value="Bật" name="bat" />-->
+
+<!--        </form>-->
+
+<!-- {% if bat   %}-->
+<!--    {% if bat% 2 == 1   %}-->
+
+<!--        <img src=" {{ url_for('video')  }} " style="float: left">-->
+<!--     {% endif %}-->
+
+<!--    {% endif %}-->
+
+    <div class="them">
+        <div>
+        <a href="/" >Danh sách</a>
+    </div>
+        <h3 style="text-align: center"> Thêm tài khoản</h3>
+        <form action="" method="post">
+
+            Tài khoản : <input type="text"  name="tk"  /> <br><br>
+            Mật khẩu : <input type="text"   name="mk" /> <br><br>
+            Xác nhận MK : <input type="text"  name="xnmk" /> <br><br>
+            Trạng thái : <input type="text"  name="tt"  /> <br><br>
+
+            <input type="submit" value="Thêm"  name="them" /> <br><br>
+
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
